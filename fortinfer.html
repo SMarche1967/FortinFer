@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FortinFer S.C.S. – Costruzioni Metalmeccaniche Industriali</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #C0271A;
+  --red-dark: #8B1A10;
+  --navy: #1C2B5A;
+  --navy-light: #2A3F80;
+  --steel: #8a9ab0;
+  --steel-light: #c4cdd9;
+  --off-white: #F2F0EC;
+  --charcoal: #1a1a1a;
+  --mid: #3a3a3a;
+  --muted: #6a6a6a;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--charcoal);
+  color: var(--off-white);
+  overflow-x: hidden;
+}
+
+/* ─── TEXTURE OVERLAY ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='none'/%3E%3Ccircle cx='1' cy='1' r='0.4' fill='rgba(255,255,255,0.018)'/%3E%3Ccircle cx='3' cy='3' r='0.4' fill='rgba(255,255,255,0.018)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3rem;
+  height: 60px;
+  background: rgba(26,26,26,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(192,39,26,0.25);
+}
+
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  color: var(--off-white);
+  letter-spacing: 0.05em;
+}
+.nav-logo span { color: var(--red); }
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--steel-light);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--red); }
+
+/* ─── HERO ─── */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding-top: 60px;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(160deg, rgba(28,43,90,0.6) 0%, rgba(26,26,26,0) 60%),
+    linear-gradient(0deg, rgba(26,26,26,1) 0%, rgba(26,26,26,0.1) 40%);
+  z-index: 1;
+}
+
+/* Metal grid pattern */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(138,154,176,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(138,154,176,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: 0;
+}
+
+/* Diagonal accent lines */
+.hero-stripes {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -55deg,
+    transparent,
+    transparent 120px,
+    rgba(192,39,26,0.03) 120px,
+    rgba(192,39,26,0.03) 122px
+  );
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Logo container */
+.logo-container {
+  background: var(--off-white);
+  border: 3px solid rgba(192,39,26,0.4);
+  padding: 2.4rem 3.5rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+  box-shadow: 0 0 80px rgba(192,39,26,0.15), 0 20px 60px rgba(0,0,0,0.6);
+  animation: logoReveal 1s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.logo-container::before,
+.logo-container::after {
+  content: '';
+  position: absolute;
+  width: 20px; height: 20px;
+  border-color: var(--red);
+  border-style: solid;
+}
+.logo-container::before { top: -3px; left: -3px; border-width: 3px 0 0 3px; }
+.logo-container::after  { bottom: -3px; right: -3px; border-width: 0 3px 3px 0; }
+
+.logo-container img {
+  max-width: 480px;
+  width: 100%;
+  display: block;
+}
+
+@keyframes logoReveal {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.hero-sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--steel);
+  margin-bottom: 0.6rem;
+  animation: fadeUp 1s 0.3s both;
+}
+
+.hero-tagline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: var(--off-white);
+  margin-bottom: 1.8rem;
+  animation: fadeUp 1s 0.45s both;
+}
+.hero-tagline .accent { color: var(--red); }
+
+.hero-cta-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: fadeUp 1s 0.6s both;
+}
+
+.btn-primary {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.85rem 2.2rem;
+  background: var(--red);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s, transform 0.15s;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+.btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); }
+
+.btn-outline {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.85rem 2.2rem;
+  background: transparent;
+  color: var(--off-white);
+  border: 1px solid rgba(196,205,217,0.4);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-outline:hover { border-color: var(--red); background: rgba(192,39,26,0.08); }
+
+/* Scroll indicator */
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: fadeUp 1s 1s both;
+}
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--red), transparent);
+  animation: scrollDrop 2s 1.5s ease-in-out infinite;
+}
+@keyframes scrollDrop {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  50%  { transform: scaleY(1); transform-origin: top; }
+  51%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── SECTION COMMON ─── */
+section { position: relative; z-index: 1; }
+
+.section-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--red);
+}
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: var(--off-white);
+}
+
+/* ─── ABOUT / CHI SIAMO ─── */
+#about {
+  padding: 7rem 3rem;
+  background: #111;
+  border-top: 1px solid rgba(138,154,176,0.1);
+}
+
+.about-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.stat-card {
+  padding: 1.4rem 1.6rem;
+  border: 1px solid rgba(138,154,176,0.15);
+  border-left: 3px solid var(--red);
+  background: rgba(255,255,255,0.025);
+}
+.stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.4rem;
+  color: var(--red);
+  line-height: 1;
+}
+.stat-desc {
+  font-size: 0.78rem;
+  color: var(--steel);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 0.3rem;
+}
+
+.about-text p {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--steel-light);
+  margin-bottom: 1.2rem;
+}
+.about-text strong { color: var(--off-white); font-weight: 600; }
+
+.location-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(28,43,90,0.4);
+  border: 1px solid rgba(42,63,128,0.5);
+  padding: 0.5rem 1rem;
+  font-size: 0.82rem;
+  color: var(--steel-light);
+  margin-top: 1.5rem;
+  letter-spacing: 0.04em;
+}
+.location-badge svg { color: var(--red); flex-shrink: 0; }
+
+/* ─── SERVIZI ─── */
+#servizi {
+  padding: 7rem 3rem;
+  background: var(--charcoal);
+}
+
+.servizi-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.servizi-header {
+  max-width: 600px;
+  margin-bottom: 4rem;
+}
+
+.servizi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5px;
+  background: rgba(138,154,176,0.12);
+}
+
+.servizio-card {
+  background: #1a1a1a;
+  padding: 2.4rem 2rem;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+.servizio-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 0;
+  background: var(--red);
+  transition: height 0.3s ease;
+}
+.servizio-card:hover { background: #222; }
+.servizio-card:hover::before { height: 100%; }
+
+.servizio-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1.4rem;
+  color: var(--red);
+}
+
+.servizio-num {
+  position: absolute;
+  top: 1.4rem;
+  right: 1.6rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.8rem;
+  color: rgba(255,255,255,0.04);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.servizio-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.18rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--off-white);
+  margin-bottom: 0.8rem;
+}
+
+.servizio-desc {
+  font-size: 0.87rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--steel);
+}
+
+/* ─── GALLERIA LINK ─── */
+#galleria {
+  padding: 5rem 3rem;
+  background: #0d0d0d;
+  border-top: 1px solid rgba(192,39,26,0.2);
+  border-bottom: 1px solid rgba(192,39,26,0.2);
+  text-align: center;
+}
+
+.galleria-inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.galleria-inner p {
+  color: var(--steel);
+  font-weight: 300;
+  line-height: 1.8;
+  margin: 1.2rem 0 2rem;
+}
+
+.fb-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  background: #1877F2;
+  padding: 0.75rem 1.8rem;
+  transition: background 0.2s;
+}
+.fb-link:hover { background: #1565C0; }
+
+/* ─── CONTATTI ─── */
+#contatti {
+  padding: 7rem 3rem;
+  background: #111;
+}
+
+.contatti-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid rgba(138,154,176,0.12);
+  background: rgba(255,255,255,0.02);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, background 0.2s;
+}
+.contact-item:hover {
+  border-color: rgba(192,39,26,0.4);
+  background: rgba(192,39,26,0.04);
+}
+
+.contact-icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(192,39,26,0.12);
+  border: 1px solid rgba(192,39,26,0.25);
+  color: var(--red);
+}
+
+.contact-detail-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.contact-detail-value {
+  font-size: 0.92rem;
+  color: var(--off-white);
+  margin-top: 0.15rem;
+}
+
+/* Form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(138,154,176,0.2);
+  color: var(--off-white);
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.9rem;
+  padding: 0.75rem 1rem;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(196,205,217,0.3);
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--red);
+  background: rgba(192,39,26,0.04);
+}
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+.form-group select option {
+  background: #1a1a1a;
+}
+
+.form-submit {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
+
+.send-note {
+  margin-top: 0.5rem;
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+.send-note a { color: var(--steel); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: #0a0a0a;
+  border-top: 1px solid rgba(138,154,176,0.1);
+  padding: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.06em;
+  color: var(--off-white);
+}
+.footer-brand span { color: var(--red); }
+
+.footer-meta {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+.footer-links a {
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: 'Barlow Condensed', sans-serif;
+}
+.footer-links a:hover { color: var(--red); }
+
+/* ─── DIVIDER ─── */
+.steel-divider {
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, transparent, var(--navy-light), var(--red), var(--navy-light), transparent);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  nav { padding: 0 1.2rem; }
+  .nav-links { display: none; }
+
+  #about, #servizi, #contatti { padding: 4rem 1.5rem; }
+
+  .about-inner,
+  .contatti-inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .about-stats { grid-template-columns: 1fr 1fr; }
+
+  .form-row { grid-template-columns: 1fr; }
+
+  .logo-container { padding: 1.5rem 1.8rem; }
+
+  footer {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+  .footer-links { justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Fortin<span>Fer</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">Chi siamo</a></li>
+    <li><a href="#servizi">Servizi</a></li>
+    <li><a href="#galleria">Galleria</a></li>
+    <li><a href="#contatti">Contatti</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-stripes"></div>
+  <div class="hero-bg"></div>
+
+  <div class="hero-content">
+    <div class="logo-container">
+      <img src="LogoFortinFer.png" alt="FortinFer S.C.S. – Logo ufficiale">
+    </div>
+
+    <p class="hero-sub">Ardara · Sassari · Sardegna</p>
+
+    <h1 class="hero-tagline">
+      Ferro.<br>
+      Acciaio.<br>
+      <span class="accent">Precisione.</span>
+    </h1>
+
+    <div class="hero-cta-row">
+      <a href="#servizi" class="btn-primary">Scopri i servizi</a>
+      <a href="#contatti" class="btn-outline">Richiedi preventivo</a>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scorri</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="steel-divider"></div>
+
+<!-- CHI SIAMO -->
+<section id="about">
+  <div class="about-inner">
+
+    <div>
+      <p class="section-label">Chi siamo</p>
+      <h2 class="section-title">Artigianato<br>Industriale<br>d'Eccellenza</h2>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-num">30+</div>
+          <div class="stat-desc">Anni di esperienza</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">100%</div>
+          <div class="stat-desc">Made in Sardinia</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">∞</div>
+          <div class="stat-desc">Soluzioni su misura</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">SCS</div>
+          <div class="stat-desc">Società certificata</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-text">
+      <p>
+        <strong>FortinFer S.C.S.</strong> è un'impresa specializzata in costruzioni metalmeccaniche industriali, fondata e condotta da <strong>Vittorio Vacca e soci</strong> nel cuore della Sardegna settentrionale.
+      </p>
+      <p>
+        Progettiamo e realizziamo strutture metalliche per uso industriale, capannoni in acciaio, carpenterie pesanti e leggere, recinzioni industriali, scale, passerelle e infrastrutture su commessa. Ogni progetto è trattato con la cura artigianale e la solidità tecnica che solo una realtà a conduzione familiare può garantire.
+      </p>
+      <p>
+        Dalla fase progettuale alla messa in opera, seguiamo il cliente in ogni passo: ascoltiamo, misuriamo, costruiamo. Sempre nel rispetto dei tempi e dei costi concordati.
+      </p>
+      <div class="location-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+        Loc. Binzas de Cheja – Ardara (SS), Sardegna
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVIZI -->
+<section id="servizi">
+  <div class="servizi-inner">
+
+    <div class="servizi-header">
+      <p class="section-label">Cosa facciamo</p>
+      <h2 class="section-title">Servizi<br>Metalmeccanici</h2>
+    </div>
+
+    <div class="servizi-grid">
+
+      <div class="servizio-card">
+        <div class="servizio-num">01</div>
+        <svg class="servizio-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+        </svg>
+        <div class="servizio-title">Capannoni Industriali</div>
+        <p class="servizio-desc">Progettazione e costruzione di capannoni in struttura metallica per uso industriale, agricolo e logistico. Soluzioni modulari e su misura per ogni esigenza di superficie e altezza.</p>
+      </div>
+
+      <div class="servizio-card">
+        <div class="servizio-num">02</div>
+        <svg class="servizio-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/>
+        </svg>
+        <div class="servizio-title">Carpenteria Metallica</div>
+        <p class="servizio-desc">Lavorazioni di carpenteria leggera e pesante: travi, pilastri, travature reticolari, supporti strutturali. Taglio, piegatura, saldatura e assemblaggio in officina.</p>
+      </div>
+
+      <div class="servizio-card">
+        <div class="servizio-num">03</div>
+        <svg class="servizio-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/>
+        </svg>
+        <div class="servizio-title">Scale e Passerelle</div>
+        <p class="servizio-desc">Realizzazione di scale metalliche industriali, passerelle, mezzanini e strutture di accesso per ambienti produttivi. Conformi alle normative di sicurezza vigenti.</p>
+      </div>
+
+      <div class="servizio-card">
+        <div class="servizio-num">04</div>
+        <svg class="servizio-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <div class="servizio-title">Recinzioni Industriali</div>
+        <p class="servizio-desc">Sistemi di recinzione metallica per aree industriali, cantieri e perimetri aziendali. Cancelli scorrevoli, sbarre di accesso e barriere personalizzate.</p>
+      </div>
+
+      <div class="servizio-card">
+        <div class="servizio-num">05</div>
+        <svg class="servizio-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+        </svg>
+        <div class="servizio-title">Saldatura Professionale</div>
+        <p class="servizio-desc">Saldatura MIG/MAG, TIG e a elettrodo su acciaio al carbonio, acciaio inossidabile e leghe speciali. Operatori qualificati per lavori in officina e in cantiere.</p>
+      </div>
+
+      <div class="servizio-card">
+        <div class="servizio-num">06</div>
+        <svg class="servizio-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+        </svg>
+        <div class="servizio-title">Manutenzione e Ripristino</div>
+        <p class="servizio-desc">Interventi di manutenzione, riparazione e rinforzo strutturale su opere metalliche esistenti. Sopralluogo, diagnosi e ripristino con materiali certificati.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALLERIA -->
+<section id="galleria">
+  <div class="galleria-inner">
+    <p class="section-label" style="justify-content:center">I nostri lavori</p>
+    <h2 class="section-title">Galleria Fotografica</h2>
+    <p>
+      Guarda i nostri progetti realizzati: capannoni industriali, strutture metalliche, carpenterie su misura e molto altro. La nostra pagina Facebook è aggiornata regolarmente con le ultime realizzazioni.
+    </p>
+    <a href="https://www.facebook.com/search/top?q=fortinfer" target="_blank" rel="noopener" class="fb-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+      </svg>
+      Visita la nostra pagina Facebook
+    </a>
+  </div>
+</section>
+
+<!-- CONTATTI -->
+<section id="contatti">
+  <div class="contatti-inner">
+
+    <div>
+      <p class="section-label">Parlaci del tuo progetto</p>
+      <h2 class="section-title">Contattaci</h2>
+      <p style="color:var(--steel);font-weight:300;line-height:1.8;margin:1.2rem 0 2rem;">
+        Siamo disponibili per preventivi, sopralluoghi e consulenze. Contattaci telefonicamente, via WhatsApp o inviaci un messaggio direttamente da qui.
+      </p>
+
+      <div class="contact-info">
+
+        <a href="tel:+393494761869" class="contact-item">
+          <div class="contact-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.18 2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.47 5.47l1.27-.78a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">Telefono</div>
+            <div class="contact-detail-value">+39 349 476 1869</div>
+          </div>
+        </a>
+
+        <a href="https://wa.me/393494761869" target="_blank" rel="noopener" class="contact-item">
+          <div class="contact-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">WhatsApp</div>
+            <div class="contact-detail-value">+39 349 476 1869 — Scrivi su WhatsApp</div>
+          </div>
+        </a>
+
+        <a href="mailto:fortinfer@gmail.com" class="contact-item">
+          <div class="contact-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">Email</div>
+            <div class="contact-detail-value">fortinfer@gmail.com</div>
+          </div>
+        </a>
+
+        <div class="contact-item" style="cursor:default">
+          <div class="contact-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">Sede</div>
+            <div class="contact-detail-value">Loc. Binzas de Cheja – Ardara (SS)</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div>
+      <div class="contact-form" id="contactForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nome">Nome e Cognome *</label>
+            <input type="text" id="nome" name="nome" placeholder="Mario Rossi" required>
+          </div>
+          <div class="form-group">
+            <label for="tel">Telefono</label>
+            <input type="tel" id="tel" name="tel" placeholder="+39 000 000 0000">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" placeholder="mario@esempio.it" required>
+        </div>
+        <div class="form-group">
+          <label for="servizio">Tipo di richiesta</label>
+          <select id="servizio" name="servizio">
+            <option value="">— Seleziona —</option>
+            <option>Capannone industriale</option>
+            <option>Carpenteria metallica</option>
+            <option>Scale e passerelle</option>
+            <option>Recinzione / cancellata</option>
+            <option>Saldatura professionale</option>
+            <option>Manutenzione / ripristino</option>
+            <option>Altro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="messaggio">Messaggio *</label>
+          <textarea id="messaggio" name="messaggio" placeholder="Descrivi brevemente il tuo progetto o la tua richiesta..." required></textarea>
+        </div>
+        <div class="form-submit">
+          <button type="button" class="btn-primary" onclick="inviaMessaggio()">Invia messaggio →</button>
+        </div>
+        <p class="send-note">Il modulo aprirà il tuo client email precompilato. In alternativa scrivi direttamente a <a href="mailto:fortinfer@gmail.com">fortinfer@gmail.com</a>.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Fortin<span>Fer</span> S.C.S.</div>
+  <div class="footer-meta">
+    di Vittorio Vacca e C.<br>
+    Loc. Binzas de Cheja – Ardara (SS) · P.IVA da verificare<br>
+    © 2025 FortinFer S.C.S. – Tutti i diritti riservati
+  </div>
+  <ul class="footer-links">
+    <li><a href="#about">Chi siamo</a></li>
+    <li><a href="#servizi">Servizi</a></li>
+    <li><a href="#contatti">Contatti</a></li>
+  </ul>
+</footer>
+
+<script>
+function inviaMessaggio() {
+  const nome     = document.getElementById('nome').value.trim();
+  const email    = document.getElementById('email').value.trim();
+  const tel      = document.getElementById('tel').value.trim();
+  const servizio = document.getElementById('servizio').value;
+  const msg      = document.getElementById('messaggio').value.trim();
+
+  if (!nome || !email || !msg) {
+    alert('Compila almeno Nome, Email e Messaggio prima di inviare.');
+    return;
+  }
+
+  const subject = 'Richiesta da sito – ' + (servizio || 'Informazioni generali');
+  const body =
+    'Nome: ' + nome + '\n' +
+    'Email: ' + email + '\n' +
+    (tel ? 'Telefono: ' + tel + '\n' : '') +
+    (servizio ? 'Tipo richiesta: ' + servizio + '\n' : '') +
+    '\nMessaggio:\n' + msg;
+
+  window.location.href =
+    'mailto:fortinfer@gmail.com' +
+    '?subject=' + encodeURIComponent(subject) +
+    '&body=' + encodeURIComponent(body);
+}
+
+// Subtle scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.servizio-card, .stat-card, .contact-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(16px)';
+  el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
