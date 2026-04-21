@@ -35,9 +35,11 @@ body {
   background: var(--charcoal);
   color: var(--off-white);
   overflow-x: hidden;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  padding-bottom: 120px;
+}
+
+body>* {
+  flex-shrink: 0;
 }
 
 /* ─── TEXTURE OVERLAY ─── */
@@ -726,13 +728,17 @@ section {
 footer {
   background: #0a0a0a;
   border-top: 1px solid rgba(138, 154, 176, 0.1);
-  padding: 3rem;
+  padding: 1.2rem 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1.5rem;
-  margin-top: auto;
+  gap: 1rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
 }
 
 .footer-brand {
