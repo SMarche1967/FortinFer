@@ -785,21 +785,27 @@ footer {
   background: linear-gradient(to right, transparent, var(--navy-light), var(--red), var(--navy-light), transparent);
 }
 
-/* ─── FOOTER WHATSAPP ─── */
-.footer-wa {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+/* ─── WHATSAPP FLOAT ─── */
+.wa-float {
+  position: fixed;
+  bottom: 90px;
+  right: 2rem;
+  width: 56px;
+  height: 56px;
   background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #fff;
-  text-decoration: none;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.6rem 1.2rem;
-  transition: background 0.2s;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  z-index: 200;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.wa-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 28px rgba(37, 211, 102, 0.6);
 }
 
 .footer-wa:hover {
