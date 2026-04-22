@@ -785,6 +785,27 @@ footer {
   background: linear-gradient(to right, transparent, var(--navy-light), var(--red), var(--navy-light), transparent);
 }
 
+/* ─── FOOTER WHATSAPP ─── */
+.footer-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #25D366;
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.2rem;
+  transition: background 0.2s;
+}
+
+.footer-wa:hover {
+  background: #1ebe57;
+}
+
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
   nav {
