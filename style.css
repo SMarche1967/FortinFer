@@ -162,29 +162,7 @@ nav {
   padding: 1rem 1.8rem;
   margin-bottom: 1.5rem;
   position: relative;
-  /* animation: logoReveal 1s cubic-bezier(0.16, 1, 0.3, 1) both; */
-}
-
-.logo-container::before,
-.logo-container::after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-color: var(--red);
-  border-style: solid;
-}
-
-.logo-container::before {
-  top: -3px;
-  left: -3px;
-  border-width: 3px 0 0 3px;
-}
-
-.logo-container::after {
-  bottom: -3px;
-  right: -3px;
-  border-width: 0 3px 3px 0;
+  animation: logoReveal 1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .logo-container img {
