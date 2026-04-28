@@ -159,7 +159,6 @@ nav {
 /* Contenitore logo */
 .logo-container {
   background: transparent;
-  border: 3px solid rgba(192, 39, 26, 0.4);
   padding: 1rem 1.8rem;
   margin-bottom: 1.5rem;
   position: relative;
