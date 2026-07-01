@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════
    FortinFer S.C.S. – Script principale
-   File: script.js
+   File: script.js  Ultima release 01/07/2026
    ═══════════════════════════════════════════════ */
 
 /**
