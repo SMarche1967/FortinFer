@@ -34,6 +34,9 @@ function inviaMessaggio() {
 }
 
 /**
+ * Back to top – mostra il pulsante dopo 300px di scroll.
+ */
+/**
  * Scroll reveal – anima le card quando entrano nel viewport.
  */
 document.addEventListener('DOMContentLoaded', function () {
@@ -46,11 +49,25 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.servizio-card, .stat-card, .contact-item')
+  document.querySelectorAll('.servizio-card, .stat-card, .contact-item, .lav-col')
     .forEach(function (el) {
       el.style.opacity    = '0';
       el.style.transform  = 'translateY(16px)';
       el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
       observer.observe(el);
     });
+});
+
+/**
+ * Back to top – mostra il pulsante dopo 300px di scroll.
+ */
+window.addEventListener('scroll', function () {
+  var btn = document.getElementById('backToTop');
+  if (btn) {
+    if (window.scrollY > 300) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+  }
 });

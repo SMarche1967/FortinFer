@@ -448,9 +448,104 @@ section {
   flex-shrink: 0;
 }
 
+/* ─── LISTA ABOUT ─── */
+.about-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+.about-list li {
+  padding: 0.28rem 0 0.28rem 1.4rem;
+  position: relative;
+  color: var(--steel-light);
+  font-weight: 300;
+  line-height: 1.45;
+  font-size: 0.88rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.about-list li:last-child {
+  border-bottom: none;
+}
+
+.about-list li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--red);
+  font-size: 0.68rem;
+  top: 0.38rem;
+}
+
+.about-list li strong {
+  color: var(--off-white);
+  font-weight: 600;
+}
+
+/* ─── LAVORAZIONI & ATTREZZATURE ─── */
+#lavorazioni {
+  padding: 5rem 3rem;
+  background: #0d0d0d;
+  border-top: 1px solid rgba(192, 39, 26, 0.2);
+  border-bottom: 1px solid rgba(192, 39, 26, 0.2);
+}
+
+.lavorazioni-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.lavorazioni-header {
+  margin-bottom: 2.5rem;
+}
+
+.lavorazioni-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+
+.lav-col-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(192, 39, 26, 0.3);
+}
+
+.lav-note {
+  font-size: 0.85rem;
+  color: var(--steel);
+  font-weight: 300;
+  line-height: 1.7;
+  margin-top: 1rem;
+}
+
+.lav-footer-note {
+  color: var(--steel);
+  margin-top: 1.8rem;
+  text-align: center;
+  font-weight: 300;
+  line-height: 1.8;
+  font-size: 0.95rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lav-footer-note strong {
+  color: var(--off-white);
+  font-weight: 600;
+}
+
 /* ─── SERVIZI ─── */
 #servizi {
-  padding: 7rem 3rem;
+  padding: 4rem 3rem;
   background: var(--charcoal);
 }
 
@@ -461,23 +556,42 @@ section {
 
 .servizi-header {
   max-width: 600px;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .servizi-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1.5px;
   background: rgba(138, 154, 176, 0.12);
 }
 
 .servizio-card {
   background: #1a1a1a;
-  padding: 2.4rem 2rem;
+  padding: 1.6rem 1.4rem;
   position: relative;
   overflow: hidden;
   cursor: pointer;
   transition: background 0.25s;
+}
+
+/* Card 06 – occupa 2 colonne in riga 2 */
+.servizio-card--wide {
+  grid-column: span 2;
+}
+
+/* Foto – occupa le restanti 3 colonne in riga 2 */
+.servizi-foto {
+  grid-column: span 3;
+  overflow: hidden;
+}
+
+.servizi-foto img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
 }
 
 .servizio-card::before {
@@ -500,18 +614,18 @@ section {
 }
 
 .servizio-icon {
-  width: 48px;
-  height: 48px;
-  margin-bottom: 1.4rem;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 0.9rem;
   color: var(--red);
 }
 
 .servizio-num {
   position: absolute;
-  top: 1.4rem;
-  right: 1.6rem;
+  top: 1rem;
+  right: 1rem;
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.8rem;
+  font-size: 2.2rem;
   color: rgba(255, 255, 255, 0.04);
   line-height: 1;
   pointer-events: none;
@@ -519,35 +633,19 @@ section {
 
 .servizio-title {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.18rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--off-white);
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.5rem;
 }
 
 .servizio-desc {
-  font-size: 0.87rem;
+  font-size: 0.82rem;
   font-weight: 300;
-  line-height: 1.7;
+  line-height: 1.55;
   color: var(--steel);
-}
-
-/* Logo nel blocco servizi */
-.servizi-grid .logo-container {
-  grid-column: 3 / 5;
-  grid-row: 2 / 3;
-  margin-bottom: 0;
-  min-height: 200px;
-  padding: 0;
-}
-
-.servizi-grid .logo-container img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
 }
 
 /* ─── GALLERIA ─── */
@@ -809,31 +907,16 @@ footer {
   background: linear-gradient(to right, transparent, var(--navy-light), var(--red), var(--navy-light), transparent);
 }
 
-/* ─── WHATSAPP FLOAT ─── */
-.wa-float {
-  position: fixed;
-  bottom: 90px;
-  right: 2rem;
-  width: 56px;
-  height: 56px;
-  background: #25D366;
-  border-radius: 50%;
-  display: flex;
+/* ─── WHATSAPP FOOTER ─── */
+.footer-wa {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  color: #fff;
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-  z-index: 200;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.wa-float:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 28px rgba(37, 211, 102, 0.6);
+  gap: 0.4rem;
+  color: #25D366 !important;
 }
 
 .footer-wa:hover {
-  background: #1ebe57;
+  color: #1ebe57 !important;
 }
 
 /* ─── RESPONSIVE ─── */
@@ -847,9 +930,15 @@ footer {
   }
 
   #about,
+  #lavorazioni,
   #servizi,
   #contatti {
     padding: 4rem 1.5rem;
+  }
+
+  .lavorazioni-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
   .about-inner,
@@ -879,4 +968,36 @@ footer {
   .footer-links {
     justify-content: center;
   }
+}
+/* ─── BACK TO TOP ─── */
+.back-to-top {
+  position: fixed;
+  bottom: 7rem;
+  right: 1.5rem;
+  width: 44px;
+  height: 44px;
+  background: var(--red);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s;
+  z-index: 998;
+  box-shadow: 0 4px 14px rgba(192, 39, 26, 0.4);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: #a01f10;
 }
