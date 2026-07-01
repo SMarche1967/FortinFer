@@ -925,15 +925,50 @@ footer {
     padding: 0 1.2rem;
   }
 
+  /* 1. NAV – hamburger nascosto, logo centrato */
   .nav-links {
     display: none;
   }
 
+  /* 2. HERO – tagline ridotta, padding contenuto */
+  #hero {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .hero-tagline {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .hero-cta-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo-container {
+    padding: 0;
+    max-width: 280px;
+    margin: 0 auto 1.5rem;
+  }
+
+  /* 3. SEZIONI – padding ridotto */
   #about,
   #lavorazioni,
   #servizi,
-  #contatti {
-    padding: 4rem 1.5rem;
+  #contatti,
+  #galleria {
+    padding: 3rem 1.2rem;
+  }
+
+  /* 4. GRIGLIE – tutto in colonna singola */
+  .about-inner,
+  .contatti-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .about-stats {
+    grid-template-columns: 1fr 1fr;
   }
 
   .lavorazioni-grid {
@@ -941,32 +976,49 @@ footer {
     gap: 2rem;
   }
 
-  .about-inner,
-  .contatti-inner {
+  /* 5. SERVIZI – 1 colonna, foto full width */
+  .servizi-grid {
     grid-template-columns: 1fr;
-    gap: 3rem;
   }
 
-  .about-stats {
-    grid-template-columns: 1fr 1fr;
+  .servizio-card--wide {
+    grid-column: span 1;
   }
 
+  .servizi-foto {
+    grid-column: span 1;
+    min-height: 200px;
+  }
+
+  /* Form */
   .form-row {
     grid-template-columns: 1fr;
   }
 
-  .logo-container {
-    padding: 1.5rem 1.8rem;
-  }
-
+  /* Footer – impilato */
   footer {
     flex-direction: column;
     text-align: center;
-    padding: 2rem 1.5rem;
+    padding: 1rem 1.2rem;
+    gap: 0.6rem;
+  }
+
+  .footer-meta {
+    font-size: 0.7rem;
   }
 
   .footer-links {
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  /* Back to top – più in basso su mobile */
+  .back-to-top {
+    bottom: 5rem;
+    right: 1rem;
+    width: 38px;
+    height: 38px;
   }
 }
 /* ─── BACK TO TOP ─── */
